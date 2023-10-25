@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator db {
+  provider = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Car {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  price    String
+  more_info String
+  posted   String
+  plate    String
+  created_at DateTime @default(now())
+}
